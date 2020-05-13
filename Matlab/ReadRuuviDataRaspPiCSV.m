@@ -1,0 +1,11 @@
+function [Tstamp,StationNo,TagNo,RSS,MessageNo,Acc]=ReadRuuviDataRaspPiCSV(FileName)%,TstampRecieved
+T=readtable(FileName,'Delimiter',',','ReadRowNames',false);
+StationNo=table2array(T(:,1));
+TagNo=table2array(T(:,3));
+RSS=table2array(T(:,4));
+MessageNo=table2array(T(:,5));
+R=table2array(T(:,2));
+R=strrep(R,'T',' ');
+Tstamp=datetime(R,'InputFormat','yyyy-MM-dd HH:mm:ss.SSS');
+AccInPacket=5;
+Acc=table2array(T(:,5+(1:(3*AccInPacket))));
