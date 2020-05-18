@@ -1,4 +1,6 @@
 function AFiltered=MovingAverage0(A,WindowSize,Zer)
+% Applying the moving average filter in window 2*WindowSize.
+% Doesn't take into account the undefined values Zer.
 n=length(A);
 AFiltered=zeros(n,1);
 if n<=2*WindowSize
