@@ -26,9 +26,9 @@ for i=1:length(z)-1
         F(1,2)=t(i+1)-t(i);
     else
         if i>5
-            [b,k]=LinRegression(t(i-5:i-1),x(i-5:i-1,1),0,0,0);
+            [b,k]=LinRegression(t(i-5:i-1),x(i-5:i-1,1),0,0);
             x(i,1)=k*t(i)+b;
-            [b,k]=LinRegression(t(i-5:i-1),x(i-5:i-1,2),0,0,0);
+            [b,k]=LinRegression(t(i-5:i-1),x(i-5:i-1,2),0,0);
             x(i,2)=k*t(i)+b;
 %             x(i,1)=interp1(t(i-5:i-1),x(i-5:i-1,1),t(i),'spline','extrap');
 %             x(i,2)=interp1(t(i-5:i-1),x(i-5:i-1,2),t(i),'spline','extrap');
