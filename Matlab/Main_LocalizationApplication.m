@@ -1,9 +1,5 @@
-%Application of the algorithm developed in Main_LocationWihtReference on all collected data
-%INPUT: 
-% File with name RSSData_Tag*_2020-02-12.csv
-%containing RSS from all stations for the tag Tag during a day
-%OUTPUT: 
-% Graph with comparison and cumulative accuracy
+%Application of the localization algorithm on all data collected in the experiment
+
 DataFolder='D:\CowBhaveData\Data_Exp08_11_2019';
 
 [StationX,StationY,StationZ,StationNo,MappingPointsX,MappingPointsY,FeedingStationPointsNo,WaterStationPointsNo]=ReadBarnSystemStructure(DataFolder);
@@ -42,14 +38,13 @@ for CowNo_i=1:CowN
         % [MappingPointsInd]=RSSLocation_OrientationMap(RSS,TstampRSS,DataFolder);%,Acc1_rss,Acc2_rss,Acc3_rss
         MappingPointsInd=[MappingPointsInd; MappingPointsInd_day];
     end
-%     X=MappingPointsX(MappingPointsInd);
-%     Y=MappingPointsY(MappingPointsInd);
-
+    
     for i=1:length(MappingPointsInd)
         CowPointFreq(CowNo_i,MappingPointsInd(i))=CowPointFreq(CowNo_i,MappingPointsInd(i))+1;
     end
 end
 
+%% Example of a behavior histogram Fig. 13. e
 CowNo_i=1;
 fr=CowPointFreq(CowNo_i,:);
 BehHist(1)=sum(fr([1:25 51:61 75:84]));
@@ -63,27 +58,13 @@ ylabel('Time [%]');
 set(gca,'xticklabel',{'Pens'; 'Feeding'; 'Drinking'; 'Milking'; 'Waiting'; 'Isle'});
 set(gcf,'Position',[50 300 320*2 300]);
 
-% fr=CowPointFreq(CowNo_i,:)/sum(CowPointFreq(CowNo_i,:));
-% fm=max(fr);
-% for i=1:length(MappingPointsY)-1
-%     plot(MappingPointsX(i),MappingPointsY(i),'g.','LineWidth',1,'MarkerSize',ceil(fr(i)/fm*50+1));
-% end
-
-TotalCowPointFreq=sum(CowPointFreq);
-DrawBarnMap(DataFolder,TotalCowPointFreq);
-% fr=TotalCowPointFreq/sum(TotalCowPointFreq);
-% fm=max(fr);
-% for i=1:length(MappingPointsY)-1
-%     plot(MappingPointsX(i),MappingPointsY(i),'g.','LineWidth',1,'MarkerSize',ceil(fr(i)/fm*50+1));
-% end
-
-%% Example of preferable cow locations
+%% Example of preferable cow locations Fig. 13. a
 CowNo_i=1;
 figure;
 DrawHeatMap(DataFolder,CowPointFreq(CowNo_i,1:end-1));
 set(gcf,'Position',[50 300 400 100]);
 
-%% Total preferable locations in the barn
+%% Total preferable locations in the barn Fig. 13. b
 figure;
 DrawHeatMap(DataFolder,sum(CowPointFreq(:,1:end-1)));
 set(gcf,'Position',[50 300 400 100]);
