@@ -22,7 +22,7 @@ end
 % RSSMap=round(RSSMap*10)/10;
 % writetable(array2table(RSSMap),[DataFolder '\RSSDistMap.csv'],'WriteVariableNames',false,'Delimiter',';');
 
-LocationProbability=zeros(RSSN,MappingPointsN);
+LocationProbability=zeros(RSSN,MappingPointsN);%emisition matrix
 for i=1:RSSN
     rss_i=RSS(i,:); rss_im=mean(rss_i);
     for j=1:MappingPointsN
@@ -36,25 +36,7 @@ end
 
 %Viterbi filtering
 T=readtable([DataFolder '\PassageProbabilityMatrix.csv'],'Delimiter',';','ReadVariableNames',false);
-PP=table2array(T);
+PP=table2array(T);%transition matrix 
 MappingPointsInd=ViterbiCorrection(LocationProbability,PP);
 save('LocationProbability','LocationProbability');
 % [m,MappingPointsInd]=max(LocationProbability,[],2);
-
-% %actual location filtering
-% X=MappingPointsX(MappingPointsInd);
-% Y=MappingPointsY(MappingPointsInd);
-% X=MovingAverage0(X,200,0);
-% Y=MovingAverage0(Y,200,0);
-% for i=1:RSSN
-%     dx=X(i)-MappingPointsX;
-%     dy=Y(i)-MappingPointsY;
-%     d=dx.*dx+dy.*dy;
-%     [m,k]=min(d);
-%     MappingPointsInd(i)=k;
-% end
-
-% MappingPointsInd=DiscreteFilterWindowPartial(MappingPointsInd,15,0.3);%,TstampRSS,seconds(5)
-% MappingPointsInd=DiscreteFilterWindowPartial(MappingPointsInd,15,0.4);%,TstampRSS,seconds(5)
-% MappingPointsInd=DiscreteFilterWindowPartial(MappingPointsInd,10,0.3,TstampRSS,seconds(5));
-% MappingPointsInd=DiscreteFilterWindowPartial(MappingPointsInd,150,0.3,TstampRSS,seconds(5));

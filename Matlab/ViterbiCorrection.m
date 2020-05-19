@@ -1,4 +1,4 @@
-function StateIndex=ViterbiCorrection(LP,PP)%location prob, passage prob
+function StateIndex=ViterbiCorrection(LP,PP)%emisition matrix , transition matrix 
 [n,StateN]=size(LP);
 CurrentStateVector=zeros(StateN,1)+LP(1,:)';
 CurrentStateVectorUpdated=CurrentStateVector*0;
