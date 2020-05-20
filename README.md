@@ -6,14 +6,14 @@ The data is available at https://zenodo.org/.
 
 ## Getting Started 
 
-Download Matlab or Julia folder with the code files.
+- Download Matlab or Julia folder with the code files.
 
-Download the data folder from https://zenodo.org/....
+- Download the data folder from https://zenodo.org/....
 
-Set the path of the data forlder to the variable DataFolder in all Main_... files, for example 
+- Set the path of the data forlder to the variable DataFolder in all Main_... files, for example 
 
     DataFolder='D:\CowBhaveData\Data_Exp08_11_2019';
 
     DataFolder="D:\CowBhaveData\Data_Exp08_11_2019"
 
-Run Main_... files described in the CowBhave Localization Instructions.pdf.
+- Run Main_... files described in the CowBhave Localization Instructions.pdf.
