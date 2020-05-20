@@ -12,8 +12,8 @@ The data is available at https://zenodo.org/.
 
 - Set the path of the data forlder to the variable DataFolder in all Main_... files, for example 
 
-    DataFolder='D:\CowBhaveData\Data_Exp08_11_2019';
+        DataFolder='D:\CowBhaveData\Data_Exp08_11_2019';
 
-    DataFolder="D:\CowBhaveData\Data_Exp08_11_2019"
+        DataFolder="D:\CowBhaveData\Data_Exp08_11_2019"
 
 - Run Main_... files described in the CowBhave Localization Instructions.pdf.
