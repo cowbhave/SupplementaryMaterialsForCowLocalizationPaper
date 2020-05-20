@@ -8,7 +8,7 @@ The data is available at https://zenodo.org/.
 
 - Download Matlab or Julia folder with the code files.
 
-- Download the data folder ´CowBhaveData´ from https://zenodo.org/....
+- Download the data folder `CowBhaveData` from https://zenodo.org/....
 
 - Set the path of the data forlder to the variable DataFolder in all Main_... files, for example 
 
