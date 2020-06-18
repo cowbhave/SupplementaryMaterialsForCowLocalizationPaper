@@ -2,7 +2,7 @@
 % Creating an averaged RSS propagation model
 % % Fig. 6
 
-DataFolder='D:\CowBhaveData\TagStationExperiments\DistOrient_22-04-2020';
+DataFolder='C:\Users\03138529\Desktop\CowBhave\DataAnalysis\TagStationCalibration\DistOrient_22-04-2020';
 % % Collection of the available data
 FileList=dir(DataFolder);
 Tstamp_Raw=[]; StationNo_Raw=[]; TagNo_Raw=[]; RSS_Raw=[];
@@ -74,7 +74,27 @@ end
 
 % % All tag-recieving station combinations and the total avereged line Fig. 6 b
 figure; hold on;
-plot(Dist,RSS_M);
+% plot(Dist,RSS_M,'color',[0.8 0.8 0.8]);
+
+MedianColor=[1 0 0];
+BoxW=0.2;
+BoxFaceAlpha=0.5;
+BoxColor=[1 0 0; 0 0.5 1; 1 0.5 0]; BoxColor=repmat(BoxColor,10,1);
+WhiskersColor=[0.5 0.5 0.5];
+for Dist_i=1:length(Dist)
+    w=ts(Dist_i)<=Tstamp_Raw & Tstamp_Raw<=te(Dist_i);
+    rss=RSS_Raw(w);
+    n=length(rss);
+    rss=sort(rss); BoxPlotParam=[rss(floor(n*0.5)) rss(floor(n*0.25)) rss(floor(n*0.75)) rss(floor(n*0.05)+1) rss(floor(n*0.95))];
+    x=Dist_i;
+    plot(x+[BoxW -BoxW],BoxPlotParam(1)+[0 0],'color',MedianColor,'LineWidth',3);
+    patch(x+[BoxW BoxW -BoxW -BoxW],[BoxPlotParam(2) BoxPlotParam(3) BoxPlotParam(3) BoxPlotParam(2)],BoxColor(1,:),'FaceAlpha',BoxFaceAlpha);
+    plot(x+[0 0],[BoxPlotParam(2) BoxPlotParam(4)],'--','color',WhiskersColor);
+    plot(x+[BoxW -BoxW]/2,BoxPlotParam(4)+[0 0],'color',WhiskersColor,'LineWidth',2);
+    plot(x+[0 0],[BoxPlotParam(3) BoxPlotParam(5)],'--','color',WhiskersColor);
+    plot(x+[BoxW -BoxW]/2,BoxPlotParam(5)+[0 0],'color',WhiskersColor,'LineWidth',2);
+end
+
 plot(Dist,mean(RSS_M),'r','LineWidth',3);
 set(gcf,'Position',[300 200 320 300]);
 axis tight; xlabel('Distance [m]'); ylabel('RSS [dB]');
