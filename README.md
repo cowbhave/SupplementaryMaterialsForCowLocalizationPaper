@@ -2,13 +2,13 @@
 The depository contains description of software developed and used for the paper “Monitoring of cow location in barn by an open source low cost low energy Bluetooth tag system”. The detailed instructions for getting results described in the paper are provided in the file CowBhave Localization Instructions.pdf.
 The software was developed on Matlab and duplicated on Julia.
 
-The data is available at https://zenodo.org/deposit/3900340.
+The data is available at https://doi.org/10.5281/zenodo.3900339
 
 ## Getting Started 
 
 - Download `Matlab` or `Julia` folder with the code files.
 
-- Download the data from https://zenodo.org/deposit/3900340
+- Download the data from https://doi.org/10.5281/zenodo.3900339
 
 - Set the path of the data forlder to the variable `DataFolder` in all `Main_...` files, for example 
 
